@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- 指定Spring IOC容器扫描的包 -->
+	<!-- <context:component-scan base-package="com.jason.spring.beans.annotation"></context:component-scan> -->
+	
+	<!-- 使用resource-pattern 来规定扫描哪些包下面的文件 -->
+	<!-- <context:component-scan base-package="com.jason.spring.beans.annotation"
+	 resource-pattern="service/*.class"></context:component-scan> -->
+	 
+	 <!-- 
+	 	context:exclude-filter 子节点指定排除哪些指定表达式的组件
+	 	context:include-filter 子节点指定包含哪些指定表达式的组件，需要配合 use-default-filters="false" 使用
+	 	经测试 type 为 annotation时 expression 只能是 springframework 中的 bean ，
+	 	但是当 type 为assignable时 expression 可以是自定义的 bean 路径 或者是 springframework 中的 bean
+	  -->
+	 <!-- <context:component-scan base-package="com.jason.spring.beans.annotation" use-default-filters="false">
+	 	<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	 	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+	 </context:component-scan> -->
+	 
+	 <!-- 
+	 	类型使用assignable
+	 	context:include-filter 同样需要配合 use-default-filters="false" 使用 
+ 	 -->
+	 <context:component-scan base-package="com.jason.spring.beans.annotation">
+	 	<!-- <context:exclude-filter type="assignable" expression="com.jason.spring.beans.annotation.respository.UserRespository"/>
+	 	<context:include-filter type="assignable" expression="com.jason.spring.beans.annotation.respository.UserRespositoryImpl"/> -->
+	 	<context:include-filter type="assignable" expression="com.jason.spring.beans.annotation.controller.UserController"/>
+	 </context:component-scan>
+</beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+		singleton:默认类型，容器初始化时创建bean实例，在容器生命周期内只创建这一个bean实例，是单例的
+		prototype:原型的，容器初始化时不创建bean实例，每次请求时都创建一个新的bean实例，并返回。
+		request\sesson:分别对应对象的request和session
+	 -->
+	<bean id="car" class="com.jason.spring.beans.autowire.Car" scope="prototype">
+		<property name="brand" value="BaoMa"></property>
+		<property name="price" value="300000"></property>
+	</bean>
+
+</beans>
