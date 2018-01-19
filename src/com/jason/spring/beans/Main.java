@@ -39,6 +39,44 @@ public class Main {
 		//如果Person中既有属性注入方式又有构造器方式注入，则必须有无参数构造器
 		Person person2=(Person) ctx.getBean("person2");
 		System.out.println(person2);
+		
+		System.out.println(getAge(8));
+		System.out.println(returnStr(1001));
 	}
 
+	public static int getAge(int num)
+	{
+		if(num==1)
+			return 10;
+		else
+			return getAge(num-1)+2;
+	}
+	
+	public static String returnStr(int num)
+	{
+		if(num>99999||num<0){
+			return "请输入5位以内的自然数";
+		}
+		String [] str={"零","一","二","三","四","五","六","七","八","九"};
+		String [] sss={"","十","百","千","万"};
+		
+		StringBuilder sb=new StringBuilder();
+		String s=String.valueOf(num);
+		System.out.println(s);
+		String ss="";
+		int counter = s.length();
+		for(int i=0;i<s.length();i++)
+		{
+			ss=str[Integer.parseInt(String.valueOf(s.charAt(i)))];
+			sb.append(ss);
+			
+			if("零".equals(ss)){
+				counter--;
+			}
+			else{
+				sb.append(sss[--counter]);
+			}
+		}
+		return sb.toString();
+	}
 }
